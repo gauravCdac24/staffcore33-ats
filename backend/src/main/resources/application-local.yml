@@ -11,4 +11,5 @@ app:
   cors:
     allowed-origins: http://localhost:3000,http://127.0.0.1:3000
   file:
-    upload-dir: ./uploads
+    # Prefer FILE_UPLOAD_DIR from run-local.ps1 (project\device). Fallback when cwd is backend/.
+    upload-dir: ${FILE_UPLOAD_DIR:../device}

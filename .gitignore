@@ -5,6 +5,11 @@
 .DS_Store
 Thumbs.db
 
+# Local runtime data
+device/
+logs/
+.tools/
+
 # Backend
 backend/target/
 backend/uploads/

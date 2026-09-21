@@ -1,15 +1,22 @@
 @echo off
-REM Start Staffcore33 ATS locally (Windows)
-REM Prerequisites: PostgreSQL running, JDK 17+, Maven, Node.js
+REM Staffcore33 ATS — one-click local start (Windows)
+REM Auto-installs missing JDK / Maven / Node.js / npm when needed
+REM Data: PostgreSQL (staffcore33_ats) | Uploads: project\device\
+REM Frees ports 3000 / 8080 if occupied, then starts API + Web.
 
-echo Starting backend on :8080 ...
-start "Staffcore33 API" cmd /k "cd /d %~dp0backend && mvn -DskipTests spring-boot:run"
-
-timeout /t 8 /nobreak >nul
-
-echo Starting frontend on :3000 ...
-start "Staffcore33 Web" cmd /k "cd /d %~dp0frontend && npm run dev"
+setlocal
+cd /d "%~dp0"
 
 echo.
-echo Open http://localhost:3000
-echo Login: admin@staffcore33.com / Admin@123
+echo Staffcore33 ATS — starting local stack...
+echo.
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0run-local.ps1" %*
+if errorlevel 1 (
+  echo.
+  echo Startup failed. See messages above.
+  pause
+  exit /b 1
+)
+
+endlocal
