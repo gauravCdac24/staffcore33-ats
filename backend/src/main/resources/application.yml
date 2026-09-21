@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: staffcore33-ats
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 30MB
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:Staffcore33LocalDevSecretKeyMustBeAtLeast256BitsLong!!}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
+  file:
+    upload-dir: ${FILE_UPLOAD_DIR:./uploads}
+
+logging:
+  level:
+    com.staffcore33.ats: INFO

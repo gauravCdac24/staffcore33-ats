@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/staffcore33_ats
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: false
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000,http://127.0.0.1:3000
+  file:
+    upload-dir: ./uploads

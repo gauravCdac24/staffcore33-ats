@@ -1,0 +1,18 @@
+[Unit]
+Description=Staffcore33 ATS API (Spring Boot)
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=staffcore
+WorkingDirectory=/opt/staffcore33/backend
+EnvironmentFile=/etc/staffcore33/ats-api.env
+ExecStart=/usr/bin/java -jar /opt/staffcore33/backend/ats-1.0.0.jar --spring.profiles.active=prod
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

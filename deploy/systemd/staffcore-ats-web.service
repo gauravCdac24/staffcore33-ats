@@ -1,0 +1,19 @@
+[Unit]
+Description=Staffcore33 ATS Web (Next.js)
+After=network.target
+
+[Service]
+Type=simple
+User=staffcore
+WorkingDirectory=/opt/staffcore33/frontend
+Environment=NODE_ENV=production
+Environment=PORT=3000
+EnvironmentFile=-/etc/staffcore33/ats-web.env
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
